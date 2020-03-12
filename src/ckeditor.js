@@ -53,7 +53,6 @@ ClassicEditor.defaultConfig = {
 			'fontColor',
 			'|',
 			'blockQuote',
-			'insertTable',
 			'mediaEmbed',
 			'undo',
 			'redo'
