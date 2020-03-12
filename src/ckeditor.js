@@ -88,9 +88,7 @@ ClassicEditor.defaultConfig = {
 	},
 	fontFamily: {
 		options: [
-			'default',
-			'Ubuntu, Arial, sans-serif',
-			'Ubuntu Mono, Courier New, Courier, monospace'
+			'Arial'
 		]
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
