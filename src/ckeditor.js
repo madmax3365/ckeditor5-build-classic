@@ -49,8 +49,6 @@ ClassicEditor.defaultConfig = {
 			'numberedList',
 			'|',
 			'fontSize',
-			'fontFamily',
-			'fontColor',
 			'|',
 			'blockQuote',
 			'mediaEmbed',
@@ -58,38 +56,8 @@ ClassicEditor.defaultConfig = {
 			'redo'
 		]
 	},
-	fontColor: {
-		colors: [
-			{
-				color: 'hsl(0, 0%, 0%)',
-				label: 'Black'
-			},
-			{
-				color: 'hsl(0, 0%, 30%)',
-				label: 'Dim grey'
-			},
-			{
-				color: 'hsl(0, 0%, 60%)',
-				label: 'Grey'
-			},
-			{
-				color: 'hsl(0, 0%, 90%)',
-				label: 'Light grey'
-			},
-			{
-				color: 'hsl(0, 0%, 100%)',
-				label: 'White',
-				hasBorder: true
-			}
-		]
-	},
 	fontSize: {
 		options: [9, 11, 13, 'default', 17, 19, 21]
-	},
-	fontFamily: {
-		options: [
-			'Arial'
-		]
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en'
