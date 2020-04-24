@@ -19,6 +19,36 @@ import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 import Font from '@ckeditor/ckeditor5-font/src/font';
 
+import plainTextToHtml from '@ckeditor/ckeditor5-clipboard/src/utils/plaintexttohtml';
+
+import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
+class PastePlainText extends Plugin {
+	static get pluginName() {
+		return 'PastePlainText';
+	}
+
+	init() {
+		const editor = this.editor;
+
+		// Logic responsible for converting HTML to plain text.
+		const clipboardPlugin = editor.plugins.get( 'Clipboard' );
+		const editingView = editor.editing.view;
+		editingView.document.on( 'clipboardInput', ( evt, data ) => {
+			if ( editor.isReadOnly ) {
+				return;
+			}
+
+			const dataTransfer = data.dataTransfer;
+			let content = plainTextToHtml( dataTransfer.getData( 'text/plain' ) );
+			content = clipboardPlugin._htmlDataProcessor.toView( content );
+			clipboardPlugin.fire( 'inputTransformation', { content, dataTransfer } );
+			editingView.scrollToTheSelection();
+
+			evt.stop();
+		} );
+	}
+}
+
 export default class ClassicEditor extends ClassicEditorBase { }
 
 // Plugins to include in the build.
@@ -33,7 +63,8 @@ ClassicEditor.builtinPlugins = [
 	Font,
 	MediaEmbed,
 	Paragraph,
-	TextTransformation
+	TextTransformation,
+	PastePlainText
 ];
 
 // Editor configuration.
